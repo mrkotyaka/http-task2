@@ -1,53 +1,53 @@
 # Java Core
-# Домашнее задание к занятию: Протокол HTTP. Вызовы удаленных серверов
+# Homework assignment for class: HTTP protocol. Remote server calls
 
-Необходимо выполнить и предоставить на проверку следующие задачи:
+The following tasks must be completed and submitted for review:
 
-1. [Запрос на получение списка фактов о кошках](https://github.com/mrkotyaka/http-task1#java-core);
-2. [Чтение данных API NASA](#point_2) (задача со звездочкой *).
+1. [Request to obtain a list of facts about cats](https://github.com/mrkotyaka/http-task1#java-core);
+2. [Reading NASA API data](#point_2) (task marked with an asterisk *).
 
 =======
 
-# <a name="point_2">Чтение данных API NASA</a>
+# <a name="point_2">Reading NASA API data</a>
 
-## Описание
-Нужно воспользоваться публичным API NASA и скачать ежедневно выгружаемые им изображение или другой контент (например видео).
-Несмотря на то, что API публичный, доступ к нему предоставляется по ключу, который достаточно просто получить по адресу: https://api.nasa.gov/.
+## Description
+You need to use the public NASA API and download the images or other content (e.g., videos) that it uploads daily.
+Although the API is public, access to it is provided by a key, which is easy to obtain at: https://api.nasa.gov/.
 
-Перейдя по ссылке, заполняем личными данными поля: First Name, Last Name, Email и в ответ (а так же на почтовый адрес) будет
-выслан ключ. С этим ключом нужно делать запросы к API.
+Follow the link and fill in your personal details in the fields: First Name, Last Name, Email, and a key will be sent to you (as well as to your email address).
+You need to use this key to make requests to the API.
 
-Итак, чтобы получить ссылку на картинку или другой контент, нужно:
-1. Сделать запрос по адресу: https://api.nasa.gov/planetary/apod?api_key=ВАШ_КЛЮЧ
-2. Разобрать полученный ответ
-3. В ответе найти поле `url` - оно содержит адрес на изображение или другой контент (например видео), который нужно скачать и сохранить локально (на своем компьютере), имя сохраняемого файла нужно взять из части url (из примера ниже DSC1028_PetersNEOWISEAuroralSpike_800.jpg)
-4. Проверить что сохраненный файл открывается.
+So, to get a link to an image or other content, you need to:
+1. Make a request at: https://api.nasa.gov/planetary/apod?api_key=ВАШ_КЛЮЧ
+2. Analyze the response you receive
+3. Find the `url` field in the response — it contains the address of the image or other content (e.g., video) that you need to download and save locally (on your computer). The name of the file to be saved should be taken from part of the URL (from the example below, DSC1028_PetersNEOWISEAuroralSpike_800.jpg)
+4. Check that the saved file opens.
 
-Пример ответа сервиса NASA
+Example response from NASA
 ```json
 {
-  "copyright": "Bill Peters",
-  "date": "2020-07-17",
-  "explanation": "After local midnight on July 14 comet NEOWISE was still above the horizon for Goldenrod, Alberta, Canada, just north of Calgary, planet Earth. In this snapshot it makes for an awesome night with dancing displays of the northern lights. The long-tailed comet and auroral displays are beautiful apparitions in the north these days. Both show the influence of spaceweather and the wind from the Sun. Skygazers have widely welcomed the visitor from the Oort cloud, though C/2020 F3 (NEOWISE) is in an orbit that is now taking it out of the inner Solar System.  Comet NEOWISE Images: July 16 | July 15 | July 14 | July 13 | July 12 | July 11 | July 10 & earlier",
-  "hdurl": "https://apod.nasa.gov/apod/image/2007/DSC1028_PetersNEOWISEAuroralSpike.jpg",
-  "media_type": "image",
-  "service_version": "v1",
-  "title": "NEOWISE of the North",
-  "url": "https://apod.nasa.gov/apod/image/2007/DSC1028_PetersNEOWISEAuroralSpike_800.jpg"
+  “copyright”: “Bill Peters”,
+  “date”: “2020-07-17”,
+  “explanation”: "After local midnight on July 14, comet NEOWISE was still above the horizon for Goldenrod, Alberta, Canada, just north of Calgary, planet Earth. In this snapshot it makes for an awesome night with dancing displays of the northern lights. The long-tailed comet and auroral displays are beautiful apparitions in the north these days. Both show the influence of spaceweather and the wind from the Sun. Skygazers have widely welcomed the visitor from the Oort cloud, though C/2020 F3 (NEOWISE) is in an orbit that is now taking it out of the inner Solar System.  Comet NEOWISE Images: July 16 | July 15 | July 14 | July 13 | July 12 | July 11 | July 10 & earlier",
+  “hdurl”: “https://apod.nasa.gov/apod/image/2007/DSC1028_PetersNEOWISEAuroralSpike.jpg”,
+  “media_type”: “image”,
+  “service_version”: “v1”,
+  “title”: “NEOWISE of the North”,
+  “url”: “https://apod.nasa.gov/apod/image/2007/DSC1028_PetersNEOWISEAuroralSpike_800.jpg”
 }
 ```
 
-## Что нужно сделать
-1. Получить ключ для API NASA по адресу: https://api.nasa.gov/
-2. Сделать запрос из кода: https://api.nasa.gov/planetary/apod?api_key=ВАШ_КЛЮЧ
-3. Создать класс ответа и разобрать json-ответ с помощью Jackson или Gson
-4. Найти поле url в ответе и скачать массив byte, который сохранить в файл
-5. Имя файла должно быть взято из части url
+## What you need to do
+1. Get a key for the NASA API at: https://api.nasa.gov/
+2. Make a request from the code: https://api.nasa.gov/planetary/apod?api_key=ВАШ_КЛЮЧ
+3. Create a response class and parse the JSON response using Jackson or Gson.
+4. Find the url field in the response and download the byte array, which should be saved to a file.
+5. The file name should be taken from the url.
 
-## Реализация
-1. Создайте проект `maven` или `gradle` и добавьте в pom.xml или gradle.build библиотеку apache httpclient
+## Implementation
+1. Create a `maven` or `gradle` project and add the apache httpclient library to pom.xml or gradle.build
 
-Пример:
+Example:
 ```text
 <dependency>
    <groupId>org.apache.httpcomponents</groupId>
@@ -55,21 +55,21 @@
    <version>4.5.12</version>
 </dependency>
 ```
-2. Создайте метод в который добавьте и настройте класс `CloseableHttpClient` например с помощью builder
+2. Create a method in which you add and configure the `CloseableHttpClient` class, for example using a builder
 ```text
 CloseableHttpClient httpClient = HttpClientBuilder.create()
     .setDefaultRequestConfig(RequestConfig.custom()
-        .setConnectTimeout(5000)    // максимальное время ожидание подключения к серверу
-        .setSocketTimeout(30000)    // максимальное время ожидания получения данных
-        .setRedirectsEnabled(false) // возможность следовать редиректу в ответе
+        .setConnectTimeout(5000)    // maximum wait time for connecting to the server
+        .setSocketTimeout(30000)    // maximum wait time for receiving data
+        .setRedirectsEnabled(false) // ability to follow redirects in the response
         .build())
     .build();
 ```
-3. Добавьте объект запроса HttpGet request = new HttpGet("https://api.nasa.gov/planetary/apod?api_key=ВАШ_КЛЮЧ") и
-   вызовите удаленный сервис `CloseableHttpResponse response = httpClient.execute(request)`;
-4. Добавьте в pom.xml или gradle.build библиотеку для работы с json
+3. Add the request object HttpGet request = new HttpGet(“https://api.nasa.gov/planetary/apod?api_key=ВАШ_КЛЮЧ”) and
+   call the remote service `CloseableHttpResponse response = httpClient.execute(request)`;
+4. Add a library for working with json to pom.xml or gradle.build
 
-Пример:
+Example:
 ```text
 <dependency>
    <groupId>com.fasterxml.jackson.core</groupId>
@@ -77,9 +77,8 @@ CloseableHttpClient httpClient = HttpClientBuilder.create()
    <version>2.11.1</version>
 </dependency>
 ```
-5. Создайте класс, в который будем преобразовывать json ответ от сервера;
-6. Преобразуйте json в java-объект;
-7. В java-объекте найдите поле url и сделайте с ним еще один http-запрос с помощью уже созданного httpClient;
-8. Сохраните тело ответа в файл с именем части url;
-9. Проверьте, что файл скачивается и открывается;
-10. Отправьте задачу на проверку.
+5. Create a class in which we will convert the JSON response from the server.
+6. Convert JSON to a Java object.
+7. Find the url field in the Java object and make another HTTP request with it using the already created httpClient.
+8. Save the response body to a file named after the url part.
+9. Check that the file downloads and opens.
